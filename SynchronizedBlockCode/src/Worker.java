@@ -6,37 +6,32 @@ public class Worker {
 	
 	private ArrayList<Integer> list1 = new ArrayList<Integer>();
 	private ArrayList<Integer> list2 = new ArrayList<Integer>();
-	private Object lock1 = new Object();
-	private Object lock2 = new Object();
 	private Random random = new Random();
 	
-		private void sendRequest(){
-		synchronized (lock1) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			list1.add(random.nextInt(100));
+	
+	private synchronized void sendRequest(){
+		try {
+			Thread.sleep(1);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+		list1.add(random.nextInt(100));
 	}
 
 	private void receiptAnswer(){
-		synchronized (lock2) {
 		try {
 			Thread.sleep(1);
 		} catch (InterruptedException e) {
 						e.printStackTrace();
 		}
 		list2.add(random.nextInt(100));
-		}
 	}
 	
 	private void proceed(){
 		for(int i=0; i<1000; i++){
 			sendRequest();
 			receiptAnswer();
-		}
+		}		
 	}
 	
 	public void start(){
