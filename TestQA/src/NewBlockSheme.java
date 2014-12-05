@@ -15,7 +15,7 @@ public class NewBlockSheme {
 		if(b==0) {
 			System.out.println("Divisor can not be 0");
 			System.exit(0);
-		}else{
+		}else {
 			System.out.println("Result: " + a/b);
 		}
 		
